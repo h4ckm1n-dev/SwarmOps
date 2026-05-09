@@ -318,6 +318,7 @@ const AGENT_CAPABILITIES = {
   'trading-ml-expert': ['order-book', 'vpin', 'isotonic-calibration'],
   // ROUTING-broad additions (non-coding specialists)
   'agentic-payments': ['payment', 'stripe', 'subscription', 'billing', 'checkout'],
+  'marketing-strategist': ['content-marketing', 'ad-copy', 'cro', 'conversion-rate', 'growth', 'editorial-calendar', 'topic-cluster', 'landing-page', 'a-b-test', 'funnel-diagnostic'],
   'github-researcher': ['oss-tool', 'github-stars', 'oss-alternative'],
   'geo-ai-visibility': ['ai-visibility', 'llms-txt', 'ai-citation'],
   'geo-content': ['eeat', 'topical-authority', 'helpful-content'],
@@ -341,6 +342,7 @@ const PATTERNS = [
 
   // Tier 1: payments / commerce (100)
   ['\\\\b(stripe|paypal|braintree|adyen|mollie|klarna|square payments|checkout flow|checkout webhook|subscription billing|invoice gen|chargeback|refund flow|payment api|payments? webhook|cart abandon|apple pay|google pay|ecommerce|e-commerce)\\\\b', 'agentic-payments', 100],
+  ['\\\\b(content marketing|ad copy|conversion rate|conversion optim|landing page (?:cro|test|optim)|growth experiment|growth loop|north[ -]?star metric|editorial calendar|topic cluster|email campaign|drip campaign|brand strategy|copywriting|advertising campaign|social media campaign|marketing funnel|growth hacking|email marketing|cro\\\\b|a/b test (?:design|hypothesis|sample size))\\\\b', 'marketing-strategist', 95],
 
   // Tier 1: AI visibility / GEO (100)
   ['\\\\b(ai visibility|llms\\\\.txt|ai citation|ai overview|perplexity citation|chatgpt search|gemini search|brand in ai|ai crawler|geo audit|ai search optimi)\\\\b', 'geo-ai-visibility', 100],
@@ -394,7 +396,6 @@ const PATTERNS = [
 // [regex source, domain label]
 const DOMAIN_HINTS = [
   ['\\\\b(contract review|gdpr|ccpa|privacy policy|terms of service|ts&cs|\\\\bdpa\\\\b|sub[ -]?processor|cookie banner|eu ai act|\\\\bdsa\\\\b|\\\\bdma\\\\b|hipaa workflow|soc ?2 compliance|data processing agreement)\\\\b', 'legal/compliance'],
-  ['\\\\b(content marketing|seo audit|email campaign|drip campaign|brand strategy|ad copy|conversion rate|copywriting|growth hacking|marketing funnel|email marketing|advertising campaign|social media campaign)\\\\b', 'marketing'],
   ['\\\\b(double[ -]?entry|ledger reconcil|reconcile (the )?(ar|ap|accounts? (receivable|payable))|financial audit|tax filing|payroll|accounts (receivable|payable)|p&l\\\\b|profit and loss|balance sheet|financial reporting|reconcile the ar)\\\\b', 'finance/accounting'],
   ['\\\\b(candidate sourc|job description|salary band|performance review|onboarding plan|hr polic|recruit(ing|ment)|candidate screening)\\\\b', 'hr/recruitment'],
   ['\\\\b(salesforce config|hubspot setup|pipeline analysis|sales playbook|lead scoring|outbound campaign|account[ -]?based marketing|\\\\babm\\\\b|crm setup)\\\\b', 'sales/crm'],

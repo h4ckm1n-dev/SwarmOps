@@ -390,10 +390,10 @@ describe('agent-router (generated JS) — ROUTING-broad: domain hints (no specia
     expect(result.hints!.some((h) => h.includes('legal/compliance'))).toBe(true);
   });
 
-  it('emits a hint for email marketing campaigns', () => {
+  it('routes email marketing campaigns to marketing-strategist (was: hint, now: specialist after agent ship)', () => {
     const result = routeJS('draft an email marketing campaign and copywriting headline');
-    expect(result.hints).toBeDefined();
-    expect(result.hints!.some((h) => h.includes('marketing'))).toBe(true);
+    expect(result.agent).toBe('marketing-strategist');
+    // Marketing is no longer a "hint" domain — there's a specialist now.
   });
 
   it('emits a hint for AR ledger reconciliation', () => {
@@ -437,12 +437,13 @@ describe('agent-router (generated JS) — ROUTING-broad: domain hints (no specia
     expect(result.hints).toEqual([]);
   });
 
-  it('emits a hint AND routes to specialist when both signals present', () => {
-    // Stripe checkout (specialist) + email marketing (hint domain)
+  it('routes to highest-priority specialist when multiple specialists match', () => {
+    // Stripe checkout (agentic-payments, priority 100) + email marketing (marketing-strategist, priority 95)
     const result = routeJS('implement Stripe checkout webhook AND draft an email marketing campaign');
     expect(result.agent).toBe('agentic-payments');
-    expect(result.hints).toBeDefined();
-    expect(result.hints!.some((h) => h.includes('marketing'))).toBe(true);
+    // Marketing-strategist surfaces in alternatives (other specialist also matched)
+    const altAgents = (result.alternatives ?? []).map((a) => a.agent);
+    expect(altAgents).toContain('marketing-strategist');
   });
 });
 

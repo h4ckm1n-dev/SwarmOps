@@ -326,10 +326,11 @@ describe('rankSpecialistAgents — ROUTING-broad: unmatchedDomains + hints', () 
     expect(res.hints.some(h => h.includes('legal'))).toBe(true);
   });
 
-  it('reports marketing hint for email marketing campaign', () => {
+  it('routes email marketing to marketing-strategist (was: hint, now: specialist)', () => {
     const res = rankSpecialistAgents('draft an email marketing campaign with copywriting and ad copy');
-    expect(res.unmatchedDomains).toContain('marketing');
-    expect(res.hints.some(h => h.includes('marketing'))).toBe(true);
+    const types = res.candidates.map(c => c.agentType);
+    expect(types).toContain('marketing-strategist');
+    expect(res.unmatchedDomains).not.toContain('marketing');
   });
 
   it('reports finance hint for accounts receivable reconciliation', () => {
@@ -380,13 +381,13 @@ describe('rankSpecialistAgents — ROUTING-broad: unmatchedDomains + hints', () 
     expect(res.hints).toEqual([]);
   });
 
-  it('reports BOTH a specialist match AND an unmatched-domain hint when both signal classes appear', () => {
-    // Stripe (specialist: agentic-payments) + email marketing (hint: marketing)
+  it('reports BOTH specialists when two specialist domains co-occur (Stripe + marketing campaign)', () => {
+    // Stripe (specialist: agentic-payments) + email marketing (specialist: marketing-strategist now)
     const res = rankSpecialistAgents('implement Stripe checkout webhook AND draft an email marketing campaign');
     const types = res.candidates.map(c => c.agentType);
     expect(types).toContain('agentic-payments');
-    expect(res.unmatchedDomains).toContain('marketing');
-    expect(res.hints.some(h => h.includes('marketing'))).toBe(true);
+    expect(types).toContain('marketing-strategist');
+    expect(res.unmatchedDomains).not.toContain('marketing');
   });
 
   it('whitespace-only task returns empty unmatchedDomains and hints', () => {

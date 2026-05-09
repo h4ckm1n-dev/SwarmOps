@@ -1271,6 +1271,7 @@ const SPECIALIST_AGENT_REGISTRY: readonly SpecialistAgentEntry[] = [
 
   // ROUTING-broad — non-coding domain specialists
   { name: 'agentic-payments', domains: ['payments', 'commerce', 'billing', 'subscription', 'ecommerce'], description: 'Payment / billing / e-commerce specialist' },
+  { name: 'marketing-strategist', domains: ['marketing', 'content-marketing', 'ad-copy', 'cro', 'conversion-rate-optimization', 'growth-experimentation', 'editorial-calendar', 'topic-cluster', 'landing-page', 'a-b-testing', 'funnel-diagnostics', 'growth-loops'], description: 'Content marketing, ad copy, CRO, growth experimentation' },
   { name: 'crypto-research-scientist', domains: ['crypto-research', 'market-microstructure', 'trading-strategy'], description: 'Primary-source crypto trading research' },
   { name: 'solana-trading-specialist', domains: ['solana', 'pump-fun', 'raydium', 'jupiter', 'jito', 'meteora'], description: 'Solana DEX / pump.fun / atomic arb' },
   { name: 'polymarket-dev', domains: ['polymarket', 'polybot', 'live-draw', 'gamma-api', 'clob'], description: 'Polymarket trading bot + CLOB/Gamma APIs' },
@@ -1474,7 +1475,6 @@ const DOMAIN_TOKENS: Record<string, readonly string[]> = {
  */
 const UNMATCHED_DOMAIN_HINTS: Array<readonly [string, readonly string[]]> = [
   ['legal', ['contract review', 'gdpr', 'ccpa', 'privacy policy', 'terms of service', 'ts&cs', 'compliance audit', 'data processing agreement', ' dpa ', 'sub-processor', 'sub processor', 'cookie banner', 'eu ai act', ' dsa ', ' dma ', 'hipaa workflow', 'soc2 compliance', 'soc 2 compliance']],
-  ['marketing', ['content marketing', 'seo audit', 'email campaign', 'drip campaign', 'brand strategy', 'social media campaign', 'advertising', 'conversion rate', 'copywriting', 'ad copy', 'marketing funnel', 'growth hacking', 'email marketing']],
   ['finance', ['accounting', 'double-entry', 'double entry', 'ledger reconcil', 'reconcile the ar', 'reconcile the ap', 'reconcile the ledger', 'financial audit', 'tax filing', 'payroll', 'accounts receivable', 'accounts payable', 'financial reporting', 'p&l', 'balance sheet']],
   ['hr', ['recruit', 'sourcing candidate', 'candidate screening', 'job description', 'salary band', 'performance review', 'onboarding plan', 'hr policy', 'hr policies']],
   ['sales', ['crm setup', 'salesforce config', 'hubspot setup', 'pipeline analysis', 'sales playbook', 'lead scoring', 'outbound campaign', 'account-based marketing', ' abm ']],
